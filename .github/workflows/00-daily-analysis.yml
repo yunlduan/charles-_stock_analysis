@@ -3,7 +3,7 @@ name: 每日股票分析
 on:
   # 定时触发 - 每天北京时间 21:45(UTC 13:45)
   schedule:
-    - cron: '0 10 * * 1-5'     # 周一到周五，# UTC 13:45 = 北京时间 21:45
+    - cron: '45 13 * * 1-5' # 周一到周五，北京时间 21:45
   
   # 手动触发
   workflow_dispatch:
@@ -405,7 +405,7 @@ jobs:
           if [ -n "${STOCK_LIST_CONFIG:-}" ]; then
             export STOCK_LIST="$STOCK_LIST_CONFIG"
           elif [ -z "${STOCK_LIST:-}" ]; then
-            export STOCK_LIST="600519"
+           export STOCK_LIST="${STOCK_LIST_CONFIG:-CRCL,CRSP,NVDA,RBLX,SPCX,TEM,TQQQ,TSLA}"
           fi
 
           # 处理 LITELLM YAML 配置文件
